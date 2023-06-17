@@ -14,7 +14,7 @@ public class BankAccount {
 		this.checkingBalance = checkingBalance;
 		this.savingsBalance = savingsBalance;
 		numberOfAccounts++;
-		totalAmount = checkingBalance + savingsBalance;
+		totalAmount += checkingBalance + savingsBalance;
 		System.out.println("A new account has been created.");
 	}
 	
@@ -25,13 +25,21 @@ public class BankAccount {
 		return savingsBalance;
 	}
 	
+	public void display() {
+		System.out.printf("Checking Balance: $%.2f", checkingBalance);
+		System.out.printf("\nSavings Balance: $%.2f", savingsBalance);
+		System.out.println("\n-------------------------");
+	}
+	
 	public void depositChecking(double amount) {
 		this.checkingBalance += amount;
 		totalAmount += amount;
+		System.out.println("Deposit complete.");
 	}
 	public void depositSavings(double amount) {
 		this.savingsBalance += amount;
 		totalAmount += amount;
+		System.out.println("Deposit complete.");
 	}
 	
 	public void withdrawChecking(double amount) {
@@ -41,6 +49,7 @@ public class BankAccount {
 		else {
 			checkingBalance -= amount;
 			totalAmount -= amount;
+			System.out.println("Withdrawal complete.");
 		}
 	}
 	public void withdrawSavings(double amount) {
@@ -50,6 +59,7 @@ public class BankAccount {
 		else {
 			savingsBalance -= amount;
 			totalAmount -= amount;
+			System.out.println("Withdrawal complete.");
 		}
 	}
 	
