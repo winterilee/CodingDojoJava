@@ -1,6 +1,7 @@
 package com.winterlee.coffeedore64.classes;
 
 import java.util.ArrayList;
+import java.util.Scanner;
 
 public class CoffeeKiosk {
 	private ArrayList<Item> menu;
@@ -32,27 +33,38 @@ public class CoffeeKiosk {
 	
 	public void newOrder() {
 		System.out.println("Please enter customer name for new order:");
-		String name = System.console().readLine();
+		Scanner sc = new Scanner(System.in);
+		String name = sc.nextLine();
 		Order order = new Order(name);
 		displayMenu();
 		System.out.println("Please enter a menu item index or q to quit:");
-        String itemNumber = System.console().readLine();
+        String itemNumber = sc.nextLine();
 		
         while(!itemNumber.equals("q")) {
         	int itemIndex = Integer.parseInt(itemNumber);
-        	int orderCount = 0;
+        	boolean itemExist = false;
         	for (Item item: menu) {
         		if (item.getIndexNum() == itemIndex) {
         			order.addItem(item);
-        			orderCount++;
+        			itemExist = true;
         		}
         	}
-        	if (orderCount == 0) {
-        		System.out.println("Please enter valid number.");
+        	if (itemExist == false) {
+        		System.out.println("Invalid item.");
         	}
         	System.out.println("Please enter a menu item index or q to quit:");
-            itemNumber = System.console().readLine();	
+            itemNumber = sc.nextLine();	
         }
+        
+        System.out.println("Customer Name: " + order.getName());
+        System.out.println("Orders:");
+        double totalAmount = 0d;
+        for(Item item: order.getItems()) {
+        	System.out.printf("%s -- $%.2f\n", item.getName(), item.getPrice());
+        	totalAmount += item.getPrice();
+        }
+        System.out.printf("Total: $%.2f\n", totalAmount);
+        
 	}
 		
 }
