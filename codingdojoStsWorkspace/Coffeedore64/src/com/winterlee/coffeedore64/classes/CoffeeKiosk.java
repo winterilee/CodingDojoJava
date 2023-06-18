@@ -64,7 +64,7 @@ public class CoffeeKiosk {
         	totalAmount += item.getPrice();
         }
         System.out.printf("Total: $%.2f\n", totalAmount);
-        
+        sc.close();
 	}
 		
 }
