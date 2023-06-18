@@ -14,7 +14,7 @@ public class Order {
 	public String getName() {
 		return name;
 	}
-	public void setName(String name) {
+	private void setName(String name) {
 		this.name = name;
 	}
 	public boolean isReady() {
