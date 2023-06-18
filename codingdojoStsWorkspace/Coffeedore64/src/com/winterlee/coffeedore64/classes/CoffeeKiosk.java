@@ -17,10 +17,6 @@ public class CoffeeKiosk {
 	public ArrayList<Order> getOrders() {
 		return orders;
 	}
-
-	public void setOrders(ArrayList<Order> orders) {
-		this.orders = orders;
-	}
 	
 	public void addMenuItem(String name, double price) {
 		Item newItem = new Item(name, price);
@@ -34,6 +30,29 @@ public class CoffeeKiosk {
 		}		
 	}
 	
-	
-	
+	public void newOrder() {
+		System.out.println("Please enter customer name for new order:");
+		String name = System.console().readLine();
+		Order order = new Order(name);
+		displayMenu();
+		System.out.println("Please enter a menu item index or q to quit:");
+        String itemNumber = System.console().readLine();
+		
+        while(!itemNumber.equals("q")) {
+        	int itemIndex = Integer.parseInt(itemNumber);
+        	int orderCount = 0;
+        	for (Item item: menu) {
+        		if (item.getIndexNum() == itemIndex) {
+        			order.addItem(item);
+        			orderCount++;
+        		}
+        	}
+        	if (orderCount == 0) {
+        		System.out.println("Please enter valid number.");
+        	}
+        	System.out.println("Please enter a menu item index or q to quit:");
+            itemNumber = System.console().readLine();	
+        }
+	}
+		
 }

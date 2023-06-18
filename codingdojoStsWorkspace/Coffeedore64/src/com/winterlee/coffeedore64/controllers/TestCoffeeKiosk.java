@@ -14,7 +14,9 @@ public class TestCoffeeKiosk {
 		cKiosk.addMenuItem("muffin", 4.5);
 		cKiosk.addMenuItem("waffle", 6.25);
 		cKiosk.addMenuItem("french toast", 7);
-		cKiosk.displayMenu();
+		
+		
+		
 	}
 
 }
