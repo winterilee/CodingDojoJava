@@ -20,6 +20,8 @@ public class ItemController {
 		fruits.add(new Item("Goji Berries", 4.0));
 		fruits.add(new Item("Guava", .75));
 		
+		model.addAttribute("fruitList", fruits);
+		
 		return "index.jsp";
 		
 	}
