@@ -7,20 +7,24 @@
 <head>
 <meta charset="ISO-8859-1">
 <title>Fruit Store</title>
+<link rel="stylesheet" type="text/css" href="/css/style.css">
+<style>
+  @import url('https://fonts.googleapis.com/css2?family=Delius&display=swap');
+</style>
 </head>
 <body>
-	<div>
-		<h1>Fruit Store</h1>
+	<div class="container">
+		<h1 class="header">Fruit Store</h1>
 		<table>
-			<tbody>
-				<tr>
-					<th>Name</th>
-					<th>Price</th>
+			<tbody class="tbody">
+				<tr class="tr">
+					<th class="td">Name</th>
+					<th class="td">Price</th>
 				</tr>
 				<c:forEach var="oneFruit" items="${fruitList}">
-					<tr>
-						<td><c:out value="${oneFruit.name}"></c:out></td>
-						<td><c:out value="${oneFruit.price}"></c:out></td>
+					<tr class="tr">
+						<td class="td"><c:out value="${oneFruit.name}"></c:out></td>
+						<td class="td">$<c:out value="${oneFruit.price}"></c:out></td>
 					</tr>
 				</c:forEach>
 			</tbody>
