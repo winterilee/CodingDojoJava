@@ -6,9 +6,9 @@
 <html>
 <head>
 <meta charset="ISO-8859-1">
-<title>Counter</title>
+<title>Main</title>
 </head>
 <body>
-
+	<h1>Welcome User!</h1>
 </body>
 </html>
