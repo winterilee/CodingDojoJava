@@ -13,7 +13,7 @@
 
 	<div>
 		<h4>Your Gold:</h4>
-		<input type="number" name="gold" />	
+		<p><c:out value="${gold}"/></p>	
 	</div>
 	<div>
 		<div>
@@ -39,7 +39,7 @@
 		</div>
 		<div>
 			<h5>Quest</h5>
-			<p>(earns 0-50 gold)</p>
+			<p>(earns/takes 0-50 gold)</p>
 			<form action="/quest" method="post">
 				<button>Find Gold!</button>
 			</form>
@@ -49,6 +49,9 @@
 		<h5>Activities:</h5>
 		<p>"placeholder for activities"</p>
 	</div>
+	<form action="/reset">
+		<button>Restart</button>
+	</form>
 	
 </body>
 </html>
