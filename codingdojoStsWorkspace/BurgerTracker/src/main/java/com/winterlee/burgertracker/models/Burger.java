@@ -2,6 +2,7 @@ package com.winterlee.burgertracker.models;
 
 import java.util.Date;
 
+import org.hibernate.validator.constraints.Range;
 import org.springframework.format.annotation.DateTimeFormat;
 
 import jakarta.persistence.Column;
@@ -22,17 +23,17 @@ public class Burger {
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private Long id;
-	@NotEmpty
-	@Size(min = 3, max = 40)
+	@NotEmpty(message="Content Required.")
+	@Size(min = 3, max = 40, message="Content must be more than 3 characters")
 	private String name;
-	@NotEmpty
-	@Size(min = 3, max = 100)
+	@NotEmpty(message="Content Required.")
+	@Size(min = 3, max = 100, message="Content must be more than 3 characters")
 	private String restaurantName;
 	@NotNull
-	@Size(min = 1, max = 5)
+	@Range(min = 1, max = 5, message="Range of rating is between 1 and 5")
 	private Integer rating;
-	@NotEmpty
-	@Size(min = 3, max = 500)
+	@NotEmpty(message="Content Required.")
+	@Size(min = 3, max = 500, message="Content must be more than 3 characters")
 	private String notes;
 	@Column(updatable=false)
 	@DateTimeFormat(pattern="yyyy-MM-dd")
@@ -42,10 +43,10 @@ public class Burger {
 	
 	public Burger() {
 	}
-	public Burger(String name, String rName, int rate, String notes) {
+	public Burger(String name, String restaurantName, int rating, String notes) {
 		this.name = name;
-		this.restaurantName = rName;
-		this.rating = rate;
+		this.restaurantName = restaurantName;
+		this.rating = rating;
 		this.notes = notes;
 	}
 	
