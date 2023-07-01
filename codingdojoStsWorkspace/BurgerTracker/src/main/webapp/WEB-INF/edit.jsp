@@ -3,41 +3,22 @@
 <%@ taglib prefix = "c" uri = "http://java.sun.com/jsp/jstl/core"%>
 <%@ taglib prefix="form" uri="http://www.springframework.org/tags/form" %>
 <%@ page isErrorPage="true" %>
-    
+ 
 <!DOCTYPE html>
 <html>
 <head>
 <meta charset="ISO-8859-1">
-<title>Burger Tracker</title>
+<title>Edit Burger</title>
 <link rel="stylesheet" href="/webjars/bootstrap/css/bootstrap.min.css" />
 </head>
 <body>
 	<div class="container d-flex flex-column w-75 mt-3">
-		<h1>Burger Tracker</h1>
-		<table>
-			<thead>
-				<tr>
-					<th>Burger Name</th>
-					<th>Restaurant Name</th>
-					<th>Rating (out of 5)</th>
-					<th>Action</th>
-				</tr>
-			</thead>
-			<tbody>
-				<c:forEach var="burger" items="${burgerList}">
-					<tr>
-						<td><c:out value="${burger.name}"/></td>
-						<td><c:out value="${burger.restaurantName}"/></td>
-						<td><c:out value="${burger.rating}"/></td>
-						<td><a href="/edit/${burger.id}">edit</a></td>
-					</tr>
-				</c:forEach>
-			</tbody>
-		</table>
-	</div>
-	<div class="container d-flex flex-column w-50 mt-5">
-		<h3>Add a Burger:</h3>
-		<form:form action="/new" method="post" modelAttribute="burger">
+		<div class="d-flex flex-row justify-content-between">
+		<h3>Edit a Burger:</h3>
+		<a href="/">Go back</a>
+		</div>
+		<form:form action="/update/${burgerToEdit.id}" method="post" modelAttribute="burgerToEdit">
+		<input type="hidden" name="_method" value="put">
 			<div class="d-flex flex-column">
 				<form:errors path="name" class="text-danger"/>
 				<p class="d-flex flex-row justify-content-between">
@@ -71,6 +52,6 @@
 			</span>
 		</form:form>
 	</div>
-
+	
 </body>
 </html>

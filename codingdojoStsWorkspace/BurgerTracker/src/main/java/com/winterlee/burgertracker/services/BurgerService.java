@@ -25,4 +25,8 @@ public class BurgerService {
 		return this.bRepo.findById(id).orElse(null);
 	}
 	
+	public Burger updateBurger(Burger newBurger) {
+		return this.bRepo.save(newBurger);
+	}
+	
 }

@@ -6,7 +6,9 @@ import org.springframework.ui.Model;
 import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.ModelAttribute;
+import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.PutMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 
 import com.winterlee.burgertracker.models.Burger;
@@ -38,5 +40,21 @@ public class BurgerController {
 		}
 	}
 	
+	@GetMapping("/edit/{burgerId}")
+	public String editBurger(@PathVariable("burgerId") Long burgerId, Model viewModel) {
+		viewModel.addAttribute("burgerToEdit", this.bService.getById(burgerId));
+		
+		return "edit.jsp";
+	}
+	
+	@PutMapping("/update/{id}")
+	public String updateBurger(@Valid @ModelAttribute("burgerToEdit") Burger editedBurger, BindingResult result, Model viewModel) {
+		if (result.hasErrors()) {
+			return "edit.jsp";
+		} else {
+			this.bService.updateBurger(editedBurger);
+			return "redirect:/";
+		}
+	}
 	
 }
