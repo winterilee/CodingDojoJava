@@ -24,16 +24,16 @@ public class Expense {
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private Long id;
 	@NotEmpty(message="Content Required.")
-	@Size(min = 3, max = 50, message="It must be at least 3 characters")
+	@Size(min = 3, max = 50, message="Name must be at least 3 characters")
 	private String name;
 	@NotEmpty(message="Content Required.")
-	@Size(min = 3, max = 50, message="It must be at least 3 characters")
+	@Size(min = 3, max = 50, message="Vendor must be at least 3 characters")
 	private String vendor;
 	@NotNull
-	@DecimalMin(value = "0.01", message="It must be at least $0.01")
+	@DecimalMin(value = "0.01", message="Amount must be at least $0.01")
 	private Double amount;
 	@NotEmpty(message="Content Required.")
-	@Size(min = 3, max = 500, message="It must be more than 3 characters")
+	@Size(min = 3, max = 500, message="Description must be more than 3 characters")
 	private String description;
 	@Column(updatable=false)
 	@DateTimeFormat(pattern="yyyy-MM-dd")
