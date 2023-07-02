@@ -25,4 +25,8 @@ public class ExpenseService {
 		return this.eRepo.findById(id).orElse(null);
 	}
 	
+	public Expense updateExpense(Expense editedExpense) {
+		return this.eRepo.save(editedExpense);
+	}
+	
 }
