@@ -8,12 +8,12 @@
 <html>
 <head>
 <meta charset="ISO-8859-1">
-<title>Insert title here</title>
+<title>Edit Expense</title>
 </head>
 <body>
 	<div>
 		<div>
-			<h2>Edit Expense</h2>
+			<h1>Edit Expense</h1>
 			<a href="/expenses">Go back</a>
 		</div>
 		<form:form action="/expenses/update/${expenseToEdit.id}" method="post" modelAttribute="expenseToEdit">

@@ -29,4 +29,8 @@ public class ExpenseService {
 		return this.eRepo.save(editedExpense);
 	}
 	
+	public void deleteExpense(Long id) {
+		this.eRepo.deleteById(id);
+	}
+	
 }
