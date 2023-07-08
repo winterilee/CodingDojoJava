@@ -17,8 +17,10 @@
 	<div>
 		<form:form action="/dojos/new/create" method="post" modelAttribute="dojo">
 			<form:errors path="name"/>
-			<form:label path="name">Name: </form:label>
-			<form:input type="text" path="name"/>
+			<p>
+				<form:label path="name">Name: </form:label>
+				<form:input type="text" path="name"/>			
+			</p>
 			<input type="submit" value="Create"/>
 		</form:form>
 	</div>

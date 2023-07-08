@@ -10,6 +10,7 @@ import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 
 import com.winterlee.dojosandninjas.models.Dojo;
+import com.winterlee.dojosandninjas.models.Ninja;
 import com.winterlee.dojosandninjas.services.DojoService;
 import com.winterlee.dojosandninjas.services.NinjaService;
 
@@ -37,15 +38,30 @@ public class DojosAndNinjasController {
 	}
 	
 	@PostMapping("/dojos/new/create")
-	public String createDojo(@Valid @ModelAttribute("dojo") Dojo dojo, BindingResult result, Model viewModel) {
+	public String createDojo(@Valid @ModelAttribute("dojo") Dojo dojo, BindingResult result) {
 		if (result.hasErrors()) {
-			return "NewDojo.jsp";
+			return "newDojo.jsp";
 		} else {
 			this.dService.createDojo(dojo);
 			return "redirect:/";
 		}
-		
 	}
 	
+	@GetMapping("/ninjas/new")
+	public String newNinja(@ModelAttribute("ninja") Ninja ninja, Model viewModel) {
+		viewModel.addAttribute("dojoList", this.dService.getAll());
+		
+		return "newNinja.jsp";
+	}
+	
+	@PostMapping("/ninjas/new/create")
+	public String createNinja(@Valid @ModelAttribute("ninja") Ninja ninja, BindingResult result) {
+		if (result.hasErrors()) {
+			return "newNinja.jsp";
+		} else {
+			this.nService.createNinja(ninja);
+			return "redirect:/";
+		}
+	}
 	
 }
