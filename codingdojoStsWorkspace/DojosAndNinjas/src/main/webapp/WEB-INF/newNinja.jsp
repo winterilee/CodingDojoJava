@@ -4,15 +4,11 @@
 <html>
 <head>
 <meta charset="ISO-8859-1">
-<title>Dojos and Ninjas</title>
+<title>New Ninja</title>
 </head>
 <body>
-	
-	<h1>Dojos and Ninjas</h1>
-	<hr />
-	
-	<p>Dojo | <a href="/dojos/new">Create</a></p>
-	<p>Ninja | <a href="/ninjas/new">Sign up</a></p>
-	
+
+	<h1>New Ninja</h1>
+
 </body>
 </html>
