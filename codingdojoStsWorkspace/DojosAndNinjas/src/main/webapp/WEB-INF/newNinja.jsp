@@ -48,5 +48,7 @@
 		</form:form>
 	</div>
 
+	<p><a href="/">Go back</a></p>
+	
 </body>
 </html>

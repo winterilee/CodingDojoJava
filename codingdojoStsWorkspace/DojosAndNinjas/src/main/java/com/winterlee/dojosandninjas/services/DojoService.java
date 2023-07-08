@@ -25,6 +25,4 @@ public class DojoService {
 		return this.dRepo.findById(Id).orElse(null);
 	}
 	
-	
-	
 }

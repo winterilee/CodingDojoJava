@@ -6,6 +6,7 @@ import org.springframework.ui.Model;
 import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.ModelAttribute;
+import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 
@@ -26,7 +27,8 @@ public class DojosAndNinjasController {
 	
 	
 	@GetMapping("")
-	public String index() {
+	public String index(Model viewModel) {
+		viewModel.addAttribute("dojoList", this.dService.getAll());
 		
 		return "index.jsp";
 	}
@@ -55,13 +57,21 @@ public class DojosAndNinjasController {
 	}
 	
 	@PostMapping("/ninjas/new/create")
-	public String createNinja(@Valid @ModelAttribute("ninja") Ninja ninja, BindingResult result) {
+	public String createNinja(@Valid @ModelAttribute("ninja") Ninja ninja, BindingResult result, Model viewModel) {
 		if (result.hasErrors()) {
+			viewModel.addAttribute("dojoList", this.dService.getAll());
 			return "newNinja.jsp";
 		} else {
 			this.nService.createNinja(ninja);
 			return "redirect:/";
 		}
+	}
+	
+	@GetMapping("show/{dojoId}")
+	public String showDojo(@PathVariable("dojoId") Long dojoId, Model viewModel) {
+		viewModel.addAttribute("dojoInfo", this.dService.getById(dojoId));
+		
+		return "showDojo.jsp";
 	}
 	
 }
