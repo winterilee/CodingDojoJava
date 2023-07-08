@@ -7,33 +7,32 @@
 <head>
 <meta charset="ISO-8859-1">
 <title>Dojo Page</title>
+<link rel="stylesheet" href="/webjars/bootstrap/css/bootstrap.min.css"/>
 </head>
 <body>
-	
-	<h1><c:out value="${dojoInfo.name}"/> Location Ninjas</h1>
-	
-	<div>
-		<table>
-			<thead>
-				<tr>
-					<th>First Name</th>
-					<th>Last Name</th>
-					<th>Age</th>
-				</tr>
-			</thead>
-			<tbody>
-				<c:forEach var="ninja" items="${dojoInfo.ninjas}">
+	<div class="container d-flex flex-column w-75 mt-3">
+		<h1><c:out value="${dojoInfo.name}"/> Location Ninjas</h1>
+		<div class="mt-3">
+			<table class="table table-striped table-hover table-bordered">
+				<thead>
 					<tr>
-						<td><c:out value="${ninja.firstName}"/></td>
-						<td><c:out value="${ninja.lastName}"/></td>
-						<td><c:out value="${ninja.age}"/></td>
+						<th>First Name</th>
+						<th>Last Name</th>
+						<th>Age</th>
 					</tr>
-				</c:forEach>
-			</tbody>
-		</table>
-	</div>
-	
-	<p><a href="/">Go back</a></p>
-	
+				</thead>
+				<tbody>
+					<c:forEach var="ninja" items="${dojoInfo.ninjas}">
+						<tr>
+							<td><c:out value="${ninja.firstName}"/></td>
+							<td><c:out value="${ninja.lastName}"/></td>
+							<td><c:out value="${ninja.age}"/></td>
+						</tr>
+					</c:forEach>
+				</tbody>
+			</table>
+		</div>
+		<p class="mt-3"><a href="/">Go back</a></p>
+	</div>	
 </body>
 </html>

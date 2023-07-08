@@ -7,22 +7,23 @@
 <head>
 <meta charset="ISO-8859-1">
 <title>Dojos and Ninjas</title>
+<link rel="stylesheet" href="/webjars/bootstrap/css/bootstrap.min.css"/>
 </head>
 <body>
-	
-	<h1>Dojos and Ninjas</h1>
-	<hr />
-	<div>
-		<p>Dojo | <a href="/dojos/new">Create</a></p>
-		<p>Ninja | <a href="/ninjas/new">Sign up</a></p>	
-	</div>
-	<hr />
-	<div>
-		<h3>Dojo List:</h3>
-		<c:forEach var="oneDojo" items="${dojoList}">
-			<p><a href="/show/${oneDojo.id}"><c:out value="${oneDojo.name}"/></a></p>
-		</c:forEach>
-	</div>
-	
+	<div class="container d-flex flex-column w-75 mt-3">
+		<h1>Dojos and Ninjas</h1>
+		<hr />
+		<div>
+			<p>Dojo | <a href="/dojos/new">Create</a></p>
+			<p>Ninja | <a href="/ninjas/new">Sign up</a></p>	
+		</div>
+		<hr />
+		<div>
+			<h3>Dojo List:</h3>
+			<c:forEach var="oneDojo" items="${dojoList}">
+				<p><a href="/show/${oneDojo.id}"><c:out value="${oneDojo.name}"/></a></p>
+			</c:forEach>
+		</div>
+	</div>	
 </body>
 </html>
