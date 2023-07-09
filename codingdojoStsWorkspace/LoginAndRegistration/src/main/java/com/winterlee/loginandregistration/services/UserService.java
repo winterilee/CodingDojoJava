@@ -51,7 +51,7 @@ public class UserService {
 			}
 			return user;
 		} else {
-			result.rejectValue("email", "Matches", "Please enter a valid email.");
+			result.rejectValue("email", "Matches", "Invalid Credentials.");
 			return null;
 		}
 	}
