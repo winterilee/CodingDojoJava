@@ -11,6 +11,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 
 import com.winterlee.loginandregistration.models.User;
 import com.winterlee.loginandregistration.services.UserService;
+import com.winterlee.loginandregistration.validators.LoginValidator;
 
 import jakarta.servlet.http.HttpSession;
 import jakarta.validation.Valid;
@@ -24,23 +25,39 @@ public class UserController {
 	
 	@GetMapping("")
 	public String index(@ModelAttribute("newUser")User newUser, Model viewModel) {
-		viewModel.addAttribute("newUser", new User());
+		viewModel.addAttribute("loginUser", new LoginValidator());
 		
 		return "index.jsp";
 	}
 	
 	@PostMapping("/register")
     public String register(@Valid @ModelAttribute("newUser") User newUser, 
-            BindingResult result, Model model, HttpSession session) {
+            BindingResult result, Model viewModel, HttpSession session) {
         
 		User newestUser = this.uService.register(newUser, result);
         if(result.hasErrors()) {
+        	viewModel.addAttribute("loginUser", new LoginValidator());
             return "index.jsp";
         }
         
         session.setAttribute("userId", newestUser.getId());
         
         return "redirect:/dashboard";
+	}
+	
+	@PostMapping("/login")
+	public String login(@Valid @ModelAttribute("loginUser") LoginValidator newLogin,
+			BindingResult result, Model viewModel, HttpSession session) {
+		
+		User user = this.uService.login(newLogin, result);
+		if(result.hasErrors()) {
+			viewModel.addAttribute("newUser", new User());
+			return "index.jsp";
+		}
+		
+		session.setAttribute("userId", user.getId());
+		
+		return "redirect:/dashboard";
 	}
 	
 	@GetMapping("/dashboard")

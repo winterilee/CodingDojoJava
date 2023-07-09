@@ -49,5 +49,24 @@
 			<input type="submit" value="Register"/>
 		</form:form>
 	</div>
+	<div>
+		<form:form action="/login" method="post" modelAttribute="loginUser">
+			<div>
+				<form:errors path="email"/>
+				<p>
+					<form:label path="email">Email:</form:label>
+					<form:input type="email" path="email"/>
+				</p>
+			</div>
+			<div>
+				<form:errors path="password"/>
+				<p>
+					<form:label path="password">Password:</form:label>
+					<form:input type="password" path="password"/>
+				</p>
+			</div>
+			<input type="submit" value="Login"/>
+		</form:form>
+	</div>
 </body>
 </html>

@@ -9,6 +9,7 @@ import org.springframework.validation.BindingResult;
 
 import com.winterlee.loginandregistration.models.User;
 import com.winterlee.loginandregistration.repositories.UserRepository;
+import com.winterlee.loginandregistration.validators.LoginValidator;
 
 @Service
 public class UserService {
@@ -37,6 +38,22 @@ public class UserService {
 	
 	public User findById(Long id) {
 		return this.uRepo.findById(id).orElse(null);
+	}
+	
+	public User login(LoginValidator newLoginObject, BindingResult result) {
+		
+		Optional<User> potentialUser = this.uRepo.findByEmail(newLoginObject.getEmail());
+		
+		if(potentialUser.isPresent()) {
+			User user = potentialUser.get();
+			if(!BCrypt.checkpw(newLoginObject.getPassword(), user.getPassword())) {
+				result.rejectValue("email", "Matches", "Invalid Credentials.");
+			}
+			return user;
+		} else {
+			result.rejectValue("email", "Matches", "Please enter a valid email.");
+			return null;
+		}
 	}
 	
 }
