@@ -33,12 +33,27 @@ public class UserController {
     public String register(@Valid @ModelAttribute("newUser") User newUser, 
             BindingResult result, Model model, HttpSession session) {
         
-       this.uService.register(newUser, result);
+		User newestUser = this.uService.register(newUser, result);
         if(result.hasErrors()) {
             return "index.jsp";
         }
         
+        session.setAttribute("userId", newestUser.getId());
+        
         return "redirect:/dashboard";
+	}
+	
+	@GetMapping("/dashboard")
+	public String dashboard(Model viewModel, HttpSession session) {
+		viewModel.addAttribute("currentUser", this.uService.findById((long)session.getAttribute("userId")));
+		
+		return "dashboard.jsp";
+	}
+	
+	@GetMapping("/logout")
+	public String logout(HttpSession session) {
+		session.invalidate();
+		return "redirect:/";
 	}
 	
 }
