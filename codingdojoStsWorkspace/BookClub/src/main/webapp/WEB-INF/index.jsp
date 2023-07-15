@@ -9,7 +9,7 @@
 <head>
 <meta charset="ISO-8859-1">
 <title>Read Share</title>
-<link rel="stylesheet" href="/webjars/bootstrap/css/bootstrap.min.css" />
+<link rel="stylesheet" href="/webjars/bootstrap/css/bootstrap.min.css"/>
 </head>
 <body>
 	<div class="container d-flex flex-column mt-3">
@@ -17,6 +17,7 @@
 			<h1>Book Club</h1>
 			<h4>A place for friends to share thoughts on books.</h4>	
 		</div>
+		<hr />
 		<div class="d-flex flex-row mt-3 justify-content-between">
 			<div class="d-flex flex-column">
 				<h3>Register</h3>

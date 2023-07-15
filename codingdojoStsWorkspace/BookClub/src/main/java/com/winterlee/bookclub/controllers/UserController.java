@@ -10,6 +10,7 @@ import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 
 import com.winterlee.bookclub.models.User;
+import com.winterlee.bookclub.services.BookService;
 import com.winterlee.bookclub.services.UserService;
 import com.winterlee.bookclub.validators.UserValidator;
 
@@ -21,6 +22,8 @@ import jakarta.validation.Valid;
 public class UserController {
 	@Autowired
 	private UserService uService;
+	@Autowired
+	private BookService bService;
 	
 	
 	@GetMapping("")
@@ -62,7 +65,12 @@ public class UserController {
 	
 	@GetMapping("/dashboard")
 	public String dashboard(Model viewModel, HttpSession session) {
-		viewModel.addAttribute("currentUser", this.uService.findById((long)session.getAttribute("userId")));
+		if (session.getAttribute("userId") == null) {
+			return "redirect:/";
+		}
+		Long userId = (Long) session.getAttribute("userId");
+		viewModel.addAttribute("currentUser", this.uService.findById(userId));
+		viewModel.addAttribute("allBooks", this.bService.getAll());
 		
 		return "dashboard.jsp";
 	}
