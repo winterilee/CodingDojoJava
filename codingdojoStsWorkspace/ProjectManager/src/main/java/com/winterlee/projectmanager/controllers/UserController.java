@@ -10,6 +10,7 @@ import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 
 import com.winterlee.projectmanager.models.User;
+import com.winterlee.projectmanager.services.ProjectService;
 import com.winterlee.projectmanager.services.UserService;
 import com.winterlee.projectmanager.validators.UserValidator;
 
@@ -21,6 +22,8 @@ import jakarta.validation.Valid;
 public class UserController {
 	@Autowired
 	private UserService uService;
+	@Autowired
+	private ProjectService pService;
 	
 	@GetMapping("")
 	public String index(@ModelAttribute("newUser")User newUser, Model viewModel) {
@@ -66,6 +69,7 @@ public class UserController {
 		}
 		Long userId = (Long) session.getAttribute("userId");
 		viewModel.addAttribute("currentUser", this.uService.findById(userId));
+		viewModel.addAttribute("allProjects", this.pService.getAll());
 		
 		return "dashboard.jsp";
 	}

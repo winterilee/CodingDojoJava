@@ -6,11 +6,11 @@ import jakarta.validation.constraints.Size;
 
 public class UserValidator {
 	@NotBlank(message="Email is required.")
-    @Email(message="Invalid Credentials.")
+    @Email(message="Please enter a valid email.")
     private String email;
     
     @NotBlank(message="Password is required.")
-    @Size(min=8, message="Invalid Credentials.")
+    @Size(min=8, message="Password must be at least 8 characters.")
     private String password;
 
 	public UserValidator() {}

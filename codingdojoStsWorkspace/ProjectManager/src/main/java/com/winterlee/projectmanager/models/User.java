@@ -1,21 +1,23 @@
 package com.winterlee.projectmanager.models;
 
 import java.util.Date;
+import java.util.List;
 
 import org.springframework.format.annotation.DateTimeFormat;
 
 import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
+import jakarta.persistence.FetchType;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
+import jakarta.persistence.OneToMany;
 import jakarta.persistence.PrePersist;
 import jakarta.persistence.PreUpdate;
 import jakarta.persistence.Table;
 import jakarta.persistence.Transient;
 import jakarta.validation.constraints.Email;
 import jakarta.validation.constraints.NotBlank;
-import jakarta.validation.constraints.NotEmpty;
 import jakarta.validation.constraints.Size;
 
 @Entity
@@ -32,11 +34,11 @@ public class User {
     @DateTimeFormat(pattern="yyyy-MM-dd")
 	private Date updatedAt;
 	
-    @NotEmpty(message="First name is required.")
+    @NotBlank(message="First name is required.")
 	@Size(min=2, max=45, message="First name must be at least 2 characters.")
 	private String firstName;
 	
-	@NotEmpty(message="Last name is required.")
+	@NotBlank(message="Last name is required.")
 	@Size(min=2, max=45, message="Last name must be at least 2 characters.")
 	private String lastName;
 	
@@ -61,6 +63,9 @@ public class User {
 	protected void onUpdate() {
 		this.updatedAt = new Date();
 	}
+	
+	@OneToMany(mappedBy="creator", fetch=FetchType.LAZY)
+	private List<Project> myProjects;
 	
 	public User() {}
 	
@@ -111,6 +116,12 @@ public class User {
 	}
 	public void setConfirm(String confirm) {
 		this.confirm = confirm;
+	}
+	public List<Project> getMyProjects() {
+		return myProjects;
+	}
+	public void setMyProjects(List<Project> myProjects) {
+		this.myProjects = myProjects;
 	}
     
 }

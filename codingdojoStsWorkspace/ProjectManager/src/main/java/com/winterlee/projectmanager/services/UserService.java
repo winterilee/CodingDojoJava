@@ -50,7 +50,9 @@ public class UserService {
 			}
 			return user;
 		} else {
-			result.rejectValue("email", "Matches", "Invalid Credentials.");
+			if (!newLoginObject.getEmail().equals("")) {
+				result.rejectValue("email", "Matches", "Invalid Credentials.");				
+			}
 			return null;
 		}
 	}
