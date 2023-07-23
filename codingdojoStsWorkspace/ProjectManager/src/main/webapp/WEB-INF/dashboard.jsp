@@ -33,10 +33,17 @@
 			<tbody>
 				<c:forEach var="oneProject" items="${allProjects}">
 					<tr>
-						<td><c:out value="${oneProject.title}"/></td>
+						<td><a href="/projects/show/${oneProject.id}"><c:out value="${oneProject.title}"/></a></td>
 						<td><c:out value="${oneProject.creator.firstName}"/></td>
 						<td><fmt:formatDate value="${oneProject.dueDate}" pattern="MMM dd"/></td>
-						<td><a href="#">Join team</a></td>
+						<c:choose>
+							<c:when test="${oneProject.creator.id == userId}">
+								<td><a href="/projects/edit/${oneProject.id}">Edit</a></td>
+							</c:when>
+							<c:otherwise>
+								<td><a href="#">Join team</a></td>
+							</c:otherwise>
+						</c:choose>
 					</tr>
 				</c:forEach>
 			</tbody>

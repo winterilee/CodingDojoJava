@@ -15,6 +15,7 @@ import jakarta.persistence.ManyToOne;
 import jakarta.persistence.PrePersist;
 import jakarta.persistence.PreUpdate;
 import jakarta.persistence.Table;
+import jakarta.validation.constraints.Future;
 import jakarta.validation.constraints.NotEmpty;
 import jakarta.validation.constraints.NotNull;
 import jakarta.validation.constraints.Size;
@@ -48,6 +49,7 @@ public class Project {
 	private String description;
 	@NotNull(message="Due Date is required.")
     @DateTimeFormat(pattern="yyyy-MM-dd")
+	@Future(message="Due Date must be a future date.")
 	private Date dueDate;
 
 	@ManyToOne(fetch=FetchType.LAZY)
