@@ -1,6 +1,7 @@
 package com.winterlee.projectmanager.models;
 
 import java.util.Date;
+import java.util.List;
 
 import org.springframework.format.annotation.DateTimeFormat;
 
@@ -11,6 +12,8 @@ import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
 import jakarta.persistence.JoinColumn;
+import jakarta.persistence.JoinTable;
+import jakarta.persistence.ManyToMany;
 import jakarta.persistence.ManyToOne;
 import jakarta.persistence.PrePersist;
 import jakarta.persistence.PreUpdate;
@@ -56,6 +59,14 @@ public class Project {
 	@JoinColumn(name="creator_id")
 	private User creator;
 	
+	@ManyToMany(fetch=FetchType.LAZY)
+	@JoinTable(
+			name = "teams",
+			joinColumns = @JoinColumn(name="project_id"),
+			inverseJoinColumns = @JoinColumn(name="user_id")
+	)
+	private List<User> teamMembers;
+	
 	public Project() {}
 	
 	public Long getId() {
@@ -99,6 +110,12 @@ public class Project {
 	}
 	public void setCreator(User creator) {
 		this.creator = creator;
+	}
+	public List<User> getTeamMembers() {
+		return teamMembers;
+	}
+	public void setTeamMembers(List<User> teamMembers) {
+		this.teamMembers = teamMembers;
 	}
 	
 }

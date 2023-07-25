@@ -64,12 +64,14 @@ public class UserController {
 	
 	@GetMapping("/dashboard")
 	public String dashboard(Model viewModel, HttpSession session) {
-		if (session.getAttribute("userId") == null) {
+		Long currentUserId = (Long) session.getAttribute("userId");
+		if (currentUserId == null) {
 			return "redirect:/";
 		}
-		Long userId = (Long) session.getAttribute("userId");
-		viewModel.addAttribute("currentUser", this.uService.findById(userId));
-		viewModel.addAttribute("allProjects", this.pService.getAll());
+		User currentUser = this.uService.findById(currentUserId);
+		viewModel.addAttribute("currentUser", currentUser);
+		viewModel.addAttribute("notUserProjects", this.pService.getAllWithoutMember(currentUser));
+		viewModel.addAttribute("userProjects", this.pService.getAllWithMember(currentUser));
 		
 		return "dashboard.jsp";
 	}

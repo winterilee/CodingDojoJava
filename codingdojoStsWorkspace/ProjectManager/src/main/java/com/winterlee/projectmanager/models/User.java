@@ -11,6 +11,9 @@ import jakarta.persistence.FetchType;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
+import jakarta.persistence.JoinColumn;
+import jakarta.persistence.JoinTable;
+import jakarta.persistence.ManyToMany;
 import jakarta.persistence.OneToMany;
 import jakarta.persistence.PrePersist;
 import jakarta.persistence.PreUpdate;
@@ -67,6 +70,14 @@ public class User {
 	@OneToMany(mappedBy="creator", fetch=FetchType.LAZY)
 	private List<Project> myProjects;
 	
+	@ManyToMany(fetch=FetchType.LAZY)
+	@JoinTable(
+			name = "teams",
+			joinColumns = @JoinColumn(name="user_id"),
+			inverseJoinColumns = @JoinColumn(name="project_id")
+	)
+	private List<Project> teamProjects;
+	
 	public User() {}
 	
 	public Long getId() {
@@ -122,6 +133,12 @@ public class User {
 	}
 	public void setMyProjects(List<Project> myProjects) {
 		this.myProjects = myProjects;
+	}
+	public List<Project> getTeamProjects() {
+		return teamProjects;
+	}
+	public void setTeamProjects(List<Project> teamProjects) {
+		this.teamProjects = teamProjects;
 	}
     
 }
