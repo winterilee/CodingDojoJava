@@ -15,6 +15,7 @@ import jakarta.persistence.JoinColumn;
 import jakarta.persistence.JoinTable;
 import jakarta.persistence.ManyToMany;
 import jakarta.persistence.ManyToOne;
+import jakarta.persistence.OneToMany;
 import jakarta.persistence.PrePersist;
 import jakarta.persistence.PreUpdate;
 import jakarta.persistence.Table;
@@ -67,6 +68,9 @@ public class Project {
 	)
 	private List<User> teamMembers;
 	
+	@OneToMany(mappedBy="projectForTask", fetch=FetchType.LAZY)
+	private List<Task> projectTasks;
+	
 	public Project() {}
 	
 	public Long getId() {
@@ -116,6 +120,12 @@ public class Project {
 	}
 	public void setTeamMembers(List<User> teamMembers) {
 		this.teamMembers = teamMembers;
+	}
+	public List<Task> getProjectTasks() {
+		return projectTasks;
+	}
+	public void setProjectTasks(List<Task> projectTasks) {
+		this.projectTasks = projectTasks;
 	}
 	
 }

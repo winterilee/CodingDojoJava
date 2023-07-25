@@ -78,6 +78,9 @@ public class User {
 	)
 	private List<Project> teamProjects;
 	
+	@OneToMany(mappedBy="creatorForTask", fetch=FetchType.LAZY)
+	private List<Task> createdTasks;
+	
 	public User() {}
 	
 	public Long getId() {
@@ -140,5 +143,11 @@ public class User {
 	public void setTeamProjects(List<Project> teamProjects) {
 		this.teamProjects = teamProjects;
 	}
-    
+	public List<Task> getCreatedTasks() {
+		return createdTasks;
+	}
+	public void setCreatedTasks(List<Task> createdTasks) {
+		this.createdTasks = createdTasks;
+	}
+	
 }

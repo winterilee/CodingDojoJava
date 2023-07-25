@@ -14,7 +14,7 @@
 	<div class="container d-flex flex-column w-75 mt-3">
 		<div class="d-flex flex-row justify-content-between align-items-center">
 			<h1>Project Details</h1>
-			<a href="/dashboard">back to the shelves</a>
+			<a href="/dashboard">back to Dashboard</a>
 		</div>
 		<div>
 			<table class="table table-hover mt-3">
@@ -41,6 +41,7 @@
 				</form>
 			</div>
 		</c:if>
+		<a href="/tasks/${projectToShow.id}">See Tasks</a>
 	</div>
 </body>
 </html>
